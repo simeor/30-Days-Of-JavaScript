@@ -6,7 +6,50 @@
 </head>
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
+
+
 <script>
+
+const canvas = document.querySelector('#draw');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+ctx.strokeStyle = '#BADA55';
+ctx.lineJoin = 'round';
+ctx.lineCap = "round";
+ctx.lineWidth = 30;
+
+let isDrwawing = false;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+
+function draw(e){
+  if (!isDrwawing) return // mouse must be down
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  ctx.beginPath();
+  // start line from
+  ctx.moveTo(lastX, lastY);
+  // end line at
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  lastX = e.offsetX;
+  lastY = e.offsetY;
+  hue ++;
+}
+
+
+canvas.addEventListener('mousedown', (e) =>{
+  isDrwawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+});
+
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', ()=> isDrwawing = false);
+canvas.addEventListener('mouseout', ()=> isDrwawing = false);
+
 </script>
 
 <style>
