@@ -31,32 +31,30 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    const year15 = inventors.filter( inventor => {
-      if (inventor.year >= 1500 && inventor.year < 1600){
-        return true;
-      }
-    })
+     const fifteen = inventors.filter(person => person.year >= 1500 && person.year <= 1599);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-    const name = inventors.map(inventor => inventor.first + " " + inventor.last);
+     const firstName = inventors.map(person => person.first);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const sorted = inventors.sort((a,b) => a.year > b.year ?  1 :  -1)
+      const sorted = inventors.sort((p1,p2) => p1.year > p2.year ? 1 : -1);
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-    const total = inventors.reduce( (acc,inventor) => acc + (inventor.passed - inventor.year),0)
-    console.table(total)
+    const years = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year)
+    },0);
+
     // 5. Sort the inventors by years lived
-    const sort = inventors.sort(function(a,b){
+
+     const yearsLived = inventors.sort(function(a,b){
       const lastGuy = a.passed - a.year;
       const nextGuy = b.passed - b.year;
-      return lastGuy > nextGuy ? -1 : 1
-    });
-    console.table(sort);
-
+      return lastGuy > nextGuy ? -1 : 1 ;
+      });
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
@@ -67,11 +65,10 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    const alpha = people.sort(function(a,b){
-    const [alast,bfirst] = a.split(", ");
-    const [blast,afirst] = b.split(", ");
-    return alast > blast ? 1 : -1;
-    })
+
+    const nameSort = inventors.sort(function(a,b){
+      return a.first > b.first ? 1 : -1 ;
+    });
 
   </script>
 </body>
