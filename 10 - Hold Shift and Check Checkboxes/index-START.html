@@ -97,29 +97,27 @@
 
 <script>
 
-  const checkboxs = document.querySelectorAll('.item input[type="checkbox"]');
-
-
   let lastChecked;
 
   function handleCheck(e){
-    let inbetween = false;
-    if(e.shiftKey && this.checked){
-      checkboxs.forEach( checkbox =>{
-        console.log(checkbox)
-        if(checkbox === this || checkbox === lastChecked){
-          inbetween = !inbetween
+
+    let inBetween = false;
+    if (e.shiftKey && this.checked){
+      checkboxes.forEach(box => {
+        if (box === this || box === lastChecked){
+          inBetween = !inBetween;
         }
-        if(inbetween){
-          checkbox.checked = true
+        if (inBetween){
+          box.checked = true;
         }
-      })
+      });
     }
 
     lastChecked = this;
   }
 
-  checkboxs.forEach( checkbox => checkbox.addEventListener('click', handleCheck));
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+checkboxes.forEach(box => box.addEventListener("click", handleCheck))
 
 </script>
 </body>
