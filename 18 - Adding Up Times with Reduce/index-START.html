@@ -182,15 +182,13 @@
     </li>
   </ul>
 <script>
-  const timeNodes = document.querySelectorAll('[data-time]');
 
-  const secondsList = [...timeNodes].map(node => node.dataset.time)
-    .map(timecode => {
-      const [min,sec] = timecode.split(":").map(parseFloat);
-      return (min * 60) + sec;
-    }).reduce((total, seconds) => {
-      return total + seconds
-    },0);
+  const timeNode = Array.from(document.querySelectorAll('li[data-time]'));
+  const seconds = timeNode.map(node => node.dataset.time).map(time => {
+  const [min, sec] = time.split(':').map(parseFloat)
+    return (min * 60 + sec)
+  })
+  const totalSeconds = seconds.reduce((total,time) => (total + time),0);
 </script>
 </body>
 </html>
